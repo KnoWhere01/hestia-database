@@ -1,11 +1,13 @@
 from flask import Flask
 from gevent.pywsgi import WSGIServer
 from routes.routes import set_routes
+from flask_sqlalchemy import SQLAlchemy
 
 
 class Database:
     def __init__(self) -> None:
         self.flask: Flask = Flask(__name__)
+        self.db = SQLAlchemy()
 
     def start(self) -> None:
         if set_routes(self.flask):
