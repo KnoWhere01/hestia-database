@@ -1,16 +1,17 @@
 from flask import Flask
 from gevent.pywsgi import WSGIServer
+
 from routes.routes import set_routes
-from flask_sqlalchemy import SQLAlchemy
+from utils.sqlalchemy import SQLAlchemy
 
 
 class Database:
     def __init__(self) -> None:
         self.flask: Flask = Flask(__name__)
-        self.db = SQLAlchemy()
+        self.db = SQLAlchemy(self.flask)
 
     def start(self) -> None:
-        if set_routes(self.flask):
+        if set_routes(self.flask) and self.db.config():
             WSGIServer(("0.0.0.0", 5000), self.flask).serve_forever()
 
 
