@@ -1,15 +1,18 @@
 import sqlalchemy
+from sqlalchemy.orm import scoped_session, sessionmaker
+
 from models.base import Base
 from models.passkey import PassKey
 from models.peer import Peer
 from models.torrent import Torrent
 from models.user import User
-from sqlalchemy.orm import scoped_session, sessionmaker
+from utils.config import Config
+from utils.singleton import Singleton
 
 
-class SQLAlchemy:
-    def __init__(self, config: dict) -> None:
-        self.config: dict = config
+class SQLAlchemy(metaclass=Singleton):
+    def __init__(self) -> None:
+        self.config: dict = Config()
 
         self.db: sqlalchemy.engine.base.Engine = self.connect()
         self.Session: sqlalchemy.orm.session.Session = self.session()
@@ -49,6 +52,3 @@ class SQLAlchemy:
 
     def query(self, table):
         return self.Session.query(globals()[table])
-
-    def test(self):
-        print("test")
