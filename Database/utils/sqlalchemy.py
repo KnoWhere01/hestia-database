@@ -1,11 +1,11 @@
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from models.base import Base
 from models.passkey import PassKey
 from models.peer import Peer
 from models.torrent import Torrent
 from models.user import User
+from utils.base import Base
 from utils.config import Config
 from utils.singleton import Singleton
 
