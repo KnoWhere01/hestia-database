@@ -1,8 +1,9 @@
-from models.base import Base
-from models.torrent import Torrent
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT, TINYINT
 from sqlalchemy.orm import relationship
+
+from models.base import Base
+from models.torrent import Torrent
 
 
 class Peer(Base):

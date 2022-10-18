@@ -1,6 +1,7 @@
-from models.base import Base
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT, TINYINT
+
+from models.base import Base
 
 
 class Torrent(Base):

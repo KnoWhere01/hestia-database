@@ -1,5 +1,6 @@
-from models.base import Base
 from sqlalchemy import Column, ForeignKey, Integer, String
+
+from models.base import Base
 
 
 class PassKey(Base):
