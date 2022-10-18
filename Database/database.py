@@ -1,16 +1,14 @@
-import utils.yaml as yaml
 from flask import Flask
 from gevent.pywsgi import WSGIServer
+
 from routes.routes import set_routes
 from utils.sqlalchemy import SQLAlchemy
 
 
 class Database:
     def __init__(self) -> None:
-        self.config = yaml.read(".env")
-
         self.flask: Flask = Flask(__name__)
-        self.database: SQLAlchemy = SQLAlchemy(self.config)
+        self.database: SQLAlchemy = SQLAlchemy()
 
     def start(self) -> None:
         if set_routes(self.flask):
