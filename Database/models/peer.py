@@ -9,7 +9,7 @@ from utils.base import Base
 class Peer(Base):
     __tablename__ = "peers"
     id = Column(Integer, primary_key=True)
-    torrent_id = Column(Integer, ForeignKey("torrents.id"))
+    torrent = Column(Integer, ForeignKey("torrents.id"))
     peer_id = Column(String(40))
     ip = Column(String(45))
     port = Column(Integer)
@@ -24,4 +24,4 @@ class Peer(Base):
     no_peer_id = Column(Boolean, default=False)
     user_agent = Column(String(1000))
 
-    torrent = relationship(Torrent, backref="peers")
+    relationship(Torrent, backref="peers")
