@@ -15,5 +15,5 @@ hestia-database is based on a REST (Representational state transfer) interface m
 </h1>
 
 <p align="center">
-    <img src="Documentation/Passkeys.svg">
+    <img src="Documentation/MCD.svg">
 </p>
