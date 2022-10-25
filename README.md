@@ -2,16 +2,16 @@
 
 <p>
 
-hestia-database est le module permettant au tracker Hestia de consulter, ajouter, changer ou encore supprimer des informations dans la base de données.
+hestia-database is the module allowing the Hestia tracker to consult, add, change or delete information in the database.
 
-hestia-database repose sur un modèle d'interface de type REST (Representational state transfer).
+hestia-database is based on a REST (Representational state transfer) interface model.
 
 </p>
 
 <br>
 
 <h1>
-    Modèle entité-association (MCD)
+    Entity–relationship model (MCD)
 </h1>
 
 <p align="center">
