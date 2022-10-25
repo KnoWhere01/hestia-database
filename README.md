@@ -2,9 +2,9 @@
 
 <p>
 
-    hestia-database est le module permettant au tracker Hestia de consulter, ajouter, changer ou encore supprimer des informations dans la base de données.
+hestia-database est le module permettant au tracker Hestia de consulter, ajouter, changer ou encore supprimer des informations dans la base de données.
 
-    hestia-database repose sur un modèle d'interface de type REST (Representational state transfer).
+hestia-database repose sur un modèle d'interface de type REST (Representational state transfer).
 
 </p>
 
