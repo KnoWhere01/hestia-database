@@ -9,3 +9,13 @@ class PassKey(Base):
     passkey = Column(String(36), unique=True)
     torrent = Column(Integer, ForeignKey("torrents.id"))
     user = Column(Integer, ForeignKey("users.id"))
+
+    def __repr__(self):
+        return (
+            "<PassKey(passkey='%s', torrent='%s', user='%s')>"
+            % (
+                self.passkey,
+                self.torrent,
+                self.user,
+            )
+        )
