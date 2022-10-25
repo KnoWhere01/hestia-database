@@ -11,3 +11,9 @@ class User(Base):
     password = Column(String(40))
     uploaded = Column(BIGINT(unsigned=True), default=0)
     downloaded = Column(BIGINT(unsigned=True), default=0)
+
+    def __repr__(self):
+        return (
+            "<User(username='%s', password='%s', uploaded='%s', downloaded='%s')>"
+            % (self.username, self.password, self.uploaded, self.downloaded)
+        )
