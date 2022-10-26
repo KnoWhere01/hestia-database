@@ -1,6 +1,6 @@
 from flask import request
-
 from models.user import User
+from passlib.hash import bcrypt
 from utils.blueprint import Blueprint
 from utils.sqlalchemy import SQLAlchemy
 
@@ -13,22 +13,26 @@ database: SQLAlchemy = SQLAlchemy()
 def user_create():
     """User CREATE"""
 
-    username = request.json.get("username")
-    password = request.json.get("password")
-    uploaded = 0
-    downloaded = 0
+    username = request.json.get("username", False)
+    password = request.json.get("password", False)
+    uploaded, downloaded = 0, 0
 
-    user = User(
-        username=username,
-        password=password,
-        uploaded=uploaded,
-        downloaded=downloaded,
-    )
+    if username and password:
 
-    if database.add(user) and database.commit():
-        return {
-            "succes": True,
-            "user": {"username": username},
-        }, 200
+        user = User(
+            username=username,
+            password=bcrypt.hash(password),
+            uploaded=uploaded,
+            downloaded=downloaded,
+        )
 
-    return {"succes": False}, 403
+        if database.add(user) and database.commit():
+            return {
+                "succes": True,
+                "message": "Account created successfully.",
+            }, 200
+
+    return {
+        "succes": False,
+        "message": "Error during account creation.",
+        }, 403
