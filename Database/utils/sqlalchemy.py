@@ -12,15 +12,15 @@ from utils.singleton import Singleton
 
 class SQLAlchemy(metaclass=Singleton):
     def __init__(self) -> None:
-        self.config: dict = Config()
+        self.__config: dict = Config()
 
-        self.db: sqlalchemy.engine.base.Engine = self.connect()
-        self.Session: sqlalchemy.orm.session.Session = self.session()
+        self.db: sqlalchemy.engine.base.Engine = self.__connect()
+        self.Session: sqlalchemy.orm.session.Session = self.__session()
 
         Base.metadata.create_all(self.db)
 
-    def connect(self) -> sqlalchemy.engine.base.Engine:
-        database_config = self.config["database"]
+    def __connect(self) -> sqlalchemy.engine.base.Engine:
+        database_config = self.__config["database"]
 
         database_ip = database_config["database_ip"]
         database_port = str(database_config["database_port"])
@@ -34,7 +34,7 @@ class SQLAlchemy(metaclass=Singleton):
             f"{database_connector}://{database_username}:{database_password}@{database_ip}:{database_port}/{database_name}"
         )
 
-    def session(self):
+    def __session(self):
         session = scoped_session(sessionmaker(self.db))
         return session()
 
