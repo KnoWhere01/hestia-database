@@ -3,6 +3,7 @@ import uuid
 from flask import request
 from models.passkey import PassKey
 from utils.blueprint import Blueprint
+from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("passkey_create")
@@ -15,15 +16,18 @@ def passkey_create():
     """Passkey CREATE"""
 
     passkey_uuid = uuid.uuid4()
-    torrent = request.json.get("torrent")
-    user = request.json.get("user")
+    torrent = request.json.get("torrent", False)
+    user = request.json.get("user", False)
 
-    passkey = PassKey(passkey_uuid, torrent, user)
+    if passkey_uuid and torrent and user:
+        if not (
+            database.query("PassKey").filter_by(passkey=passkey_uuid).limit(1).first()
+        ):
+            passkey = PassKey(passkey=passkey_uuid, torrent=torrent, user=user)
 
-    if database.add(passkey) and database.commit():
-        return {
-            "succes": True,
-            "PassKey": {"passkey": passkey_uuid, "torrent": passkey_uuid, "user": user},
-        }, 200
+            if database.add(passkey) and database.commit():
+                return Response.success(message="PassKey created successfully.")
 
-    return {"succes": False}, 403
+        return Response.error(message="PassKey unavailable.")
+
+    return Response.error(message="Error during passkey creation.")
