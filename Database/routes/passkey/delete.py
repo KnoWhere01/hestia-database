@@ -9,8 +9,8 @@ database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/passkey", methods=["DELETE"])
-def user_delete():
-    """User DELETE"""
+def passkey_delete():
+    """Passkey DELETE"""
 
     if passkey := request.json.get("passkey", False):
         if passkey := database.query("PassKey").filter_by(passkey=passkey):
@@ -21,4 +21,4 @@ def user_delete():
 
         return Response.error(message="Passkey unavailable.")
 
-    return Response.error(message="Error during account deletion.")
+    return Response.error(message="Error during passkey deletion.")
