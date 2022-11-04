@@ -1,9 +1,25 @@
+from flask import request
+
 from utils.blueprint import Blueprint
+from utils.response import Response
+from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("peer_delete")
 
+database: SQLAlchemy = SQLAlchemy()
 
-@blueprint.route("/peer/<peer>", methods=["DELETE"])
-def peer_delete(peer):
+
+@blueprint.route("/peer", methods=["DELETE"])
+def peer_delete():
     """Peer DELETE"""
-    return {"method": "DELETE", "delete": peer}
+
+    if peer_id := request.json.get("peer_id", False):
+        if peer := database.query("Peer").filter_by(peer_id=peer_id):
+            if peer.delete() and database.commit():
+                return Response.success(message="Peer successfully deleted.")
+
+            return Response.error(message="Error during peer deletion.")
+
+        return Response.error(message="Peer unavailable.")
+
+    return Response.error(message="Error during peer deletion.")
