@@ -4,12 +4,15 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("user_delete")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/user", methods=["DELETE"])
+@requires_api_key
 def user_delete():
     """User DELETE"""
 

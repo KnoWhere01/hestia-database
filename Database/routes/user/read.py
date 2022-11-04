@@ -6,12 +6,15 @@ from utils.sqlalchemy import SQLAlchemy
 
 from html import escape
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("user_read")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/user/<user>", methods=["GET"])
+@requires_api_key
 def user_read(user):
     """User READ"""
 
