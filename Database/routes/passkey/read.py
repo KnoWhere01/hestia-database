@@ -6,12 +6,15 @@ from utils.sqlalchemy import SQLAlchemy
 
 from html import escape
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("passkey_read")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/passkey/<passKey>", methods=["GET"])
+@requires_api_key
 def passkey_read(passKey):
     """Passkey READ"""
 
