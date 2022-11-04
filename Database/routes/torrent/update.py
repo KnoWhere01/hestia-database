@@ -7,12 +7,15 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("torrent_update")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/torrent/<info_hash>", methods=["PATCH", "PUT"])
+@requires_api_key
 def torrent_update(info_hash):
     """Torrent UPDATE"""
     if info_hash := escape(info_hash):

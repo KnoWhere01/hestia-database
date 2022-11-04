@@ -6,12 +6,15 @@ from utils.sqlalchemy import SQLAlchemy
 
 from html import escape
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("torrent_read")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/torrent/<info_hash>", methods=["GET"])
+@requires_api_key
 def torrent_read(info_hash):
     """Torrent READ"""
 

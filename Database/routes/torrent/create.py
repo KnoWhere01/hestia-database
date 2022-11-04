@@ -5,12 +5,15 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("torrent_create")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/torrent", methods=["POST"])
+@requires_api_key
 def torrent_create():
     """Torrent CREATE"""
 
