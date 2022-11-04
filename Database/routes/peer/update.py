@@ -6,12 +6,15 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from utils.security import requires_api_key
+
 blueprint = Blueprint("peer_update")
 
 database: SQLAlchemy = SQLAlchemy()
 
 
 @blueprint.route("/peer/<peer_id>", methods=["PATCH", "PUT"])
+@requires_api_key
 def peer_update(peer_id):
     """Peer UPDATE"""
     if peer_id := escape(peer_id):
