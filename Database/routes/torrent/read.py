@@ -27,7 +27,7 @@ def torrent_read(info_hash):
                     "name": torrent.name,
                     "desc": torrent.desc,
                     "torrent_file": torrent.torrent_file,
-                    "torrent_version": torrent.torrent_version,
+                    "version": torrent.version,
                     "uploaded_time": torrent.uploaded_time,
                     "download_count": torrent.download_count,
                     "seeders": torrent.seeders,
