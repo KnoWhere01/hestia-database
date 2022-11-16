@@ -24,7 +24,7 @@ def torrent_update(info_hash):
             name = request.json.get("name", False)
             desc = request.json.get("desc", False)
             torrent_file = request.json.get("torrent_file", False)
-            torrent_version = request.json.get("torrent_version", False)
+            version = request.json.get("version", False)
             uploaded_time = request.json.get("uploaded_time", False)
             download_count = request.json.get("download_count", False)
             seeders = request.json.get("seeders", False)
@@ -44,8 +44,8 @@ def torrent_update(info_hash):
             if torrent_file:
                 torrent.update({"torrent_file": torrent_file})
 
-            if torrent_version:
-                torrent.update({"torrent_version": torrent_version})
+            if version:
+                torrent.update({"version": version})
 
             if uploaded_time:
                 torrent.update({"uploaded_time": uploaded_time})
@@ -72,7 +72,7 @@ def torrent_update(info_hash):
                         "name": torrent.name,
                         "desc": torrent.desc,
                         "torrent_file": torrent.torrent_file,
-                        "torrent_version": torrent.torrent_version,
+                        "version": torrent.version,
                         "uploaded_time": torrent.uploaded_time,
                         "download_count": torrent.download_count,
                         "seeders": torrent.seeders,
