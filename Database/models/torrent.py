@@ -14,7 +14,7 @@ class Torrent(Base):
     name = Column(String(255))
     desc = Column(String(1000))
     torrent_file = Column(String(255))
-    torrent_version = Column(TINYINT, default=1)
+    version = Column(TINYINT, default=1)
     uploaded_time = Column(DateTime)
     download_count = Column(BIGINT(unsigned=True), default=0)
     seeders = Column(BIGINT(unsigned=True), default=0)
@@ -25,14 +25,14 @@ class Torrent(Base):
 
     def __repr__(self):
         return (
-            "<Torrent(uploader='%s', info_hash='%s', name='%s', desc='%s', torrent_file='%s', torrent_version='%s', uploaded_time='%s', download_count='%s', seeders='%s', leechers='%s', last_checked='%s')>"
+            "<Torrent(uploader='%s', info_hash='%s', name='%s', desc='%s', torrent_file='%s', version='%s', uploaded_time='%s', download_count='%s', seeders='%s', leechers='%s', last_checked='%s')>"
             % (
                 self.uploader,
                 self.info_hash,
                 self.name,
                 self.desc,
                 self.torrent_file,
-                self.torrent_version,
+                self.version,
                 self.uploaded_time,
                 self.download_count,
                 self.seeders,
