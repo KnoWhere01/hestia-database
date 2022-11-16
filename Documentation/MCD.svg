@@ -104,7 +104,7 @@
 	<text x="124" y="490.8" fill="#000" font-family="Verdana" font-size="12">name</text>
 	<text x="124" y="507.8" fill="#000" font-family="Verdana" font-size="12">desc</text>
 	<text x="124" y="524.8" fill="#000" font-family="Verdana" font-size="12">torrent_file</text>
-	<text x="124" y="541.8" fill="#000" font-family="Verdana" font-size="12">torrent_version</text>
+	<text x="124" y="541.8" fill="#000" font-family="Verdana" font-size="12">version</text>
 	<text x="124" y="558.8" fill="#000" font-family="Verdana" font-size="12">uploaded_time</text>
 	<text x="124" y="575.8" fill="#000" font-family="Verdana" font-size="12">download_count</text>
 	<text x="124" y="592.8" fill="#000" font-family="Verdana" font-size="12">seeders</text>
