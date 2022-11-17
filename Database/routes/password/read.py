@@ -3,8 +3,11 @@ from flask import request
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
+from utils.config import config
+import datetime, calendar
 
 from passlib.hash import bcrypt
+import jwt
 
 from utils.security import requires_api_key
 
@@ -23,19 +26,34 @@ def passkey_read():
 
     if username and password:
         if user := database.query("User").filter_by(username=username).limit(1).first():
-            if auth := database.query("Password").filter_by(user=user.id).limit(1).first():
+            if (
+                auth := database.query("Password")
+                .filter_by(user=user.id)
+                .limit(1)
+                .first()
+            ):
                 if bcrypt.verify(password, auth.password):
-                    return Response.success(
-                        message={
-                            "username": username,
-                            "password": True
-                        }
+                    expiry = int(
+                        calendar.timegm(datetime.datetime.now().timetuple())
+                        + datetime.timedelta(minutes=5).total_seconds()
                     )
+
+                    token = jwt.encode(
+                        payload={
+                            "username": user.username,
+                            "api_key": user.api_key,
+                            "expiry": expiry,
+                        },
+                        key=config["JWT-SECRET"],
+                        algorithm="HS256",
+                    )
+
+                    return Response.success(message={"token": token, "expiry": expiry})
 
                 return Response.error(message="Incorrect password.")
 
-            return Response.error(message="Incorrect password.")  
+            return Response.error(message="Incorrect password.")
 
         return Response.error(message="Incorrect username.")
 
-    return Response.error(message="Password unavailable.")
+    return Response.error(message="Bad Request.")
