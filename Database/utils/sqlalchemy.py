@@ -5,6 +5,7 @@ from models.passkey import PassKey
 from models.peer import Peer
 from models.torrent import Torrent
 from models.user import User
+from models.password import Password
 from utils.base import Base
 from utils.config import Config
 from utils.singleton import Singleton
@@ -38,8 +39,10 @@ class SQLAlchemy(metaclass=Singleton):
         session = scoped_session(sessionmaker(self.db))
         return session()
 
-    def add(self, object) -> bool:
-        self.Session.add(object)
+    def add(self, *args) -> bool:
+        for arg in args:
+            self.Session.add(arg)
+
         return True
 
     def commit(self) -> bool:
