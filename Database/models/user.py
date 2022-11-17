@@ -7,8 +7,8 @@ from utils.base import Base
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
-    username = Column(String(255), unique=True)
-    api_key = Column(String(36), unique=True)
+    username = Column(String(255), unique=True, nullable=False)
+    api_key = Column(String(36), unique=True, nullable=False)
     uploaded = Column(BIGINT(unsigned=True), default=0)
     downloaded = Column(BIGINT(unsigned=True), default=0)
 
