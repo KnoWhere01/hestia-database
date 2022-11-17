@@ -22,6 +22,7 @@ def user_read(user):
         if user := database.query("User").filter_by(username=username).limit(1).first():
             return Response.success(
                 message={
+                    "id": user.id,
                     "username": user.username,
                     "uploaded": user.uploaded,
                     "downloaded": user.downloaded,
