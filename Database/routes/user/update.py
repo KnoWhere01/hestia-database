@@ -20,9 +20,13 @@ def user_update(user):
     """User UPDATE"""
     if username := escape(user):
         if user := database.query("User").filter_by(username=username):
+            api_key = request.json.get("api_key", False)
             password = request.json.get("password", False)
             uploaded = request.json.get("uploaded", 0)
             downloaded = request.json.get("downloaded", 0)
+
+            if api_key:
+                user.update({"api_key": api_key})
 
             if password:
                 user_query = user.limit(1).first()
