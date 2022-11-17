@@ -25,7 +25,9 @@ def user_update(user):
             downloaded = request.json.get("downloaded", 0)
 
             if password:
-                user.update({"password": bcrypt.hash(password)})
+                user_query = user.limit(1).first()
+                if password_query := database.query("Password").filter_by(user=user_query.id):
+                    password_query.update({"password": bcrypt.hash(password)})
 
             if uploaded:
                 user.update({"uploaded": uploaded})

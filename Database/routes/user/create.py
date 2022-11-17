@@ -1,10 +1,12 @@
 from flask import request
-from passlib.hash import bcrypt
 
 from models.user import User
+from models.password import Password
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
+
+from passlib.hash import bcrypt
 
 from utils.security import requires_api_key
 
@@ -26,13 +28,19 @@ def user_create():
         if not (database.query("User").filter_by(username=username).limit(1).first()):
             user = User(
                 username=username,
-                password=bcrypt.hash(password),
                 uploaded=uploaded,
                 downloaded=downloaded,
             )
-
+            
             if database.add(user) and database.commit():
-                return Response.success(message="Account created successfully.")
+
+                password = Password(
+                    user=user.id,
+                    password=bcrypt.hash(password)
+                )
+
+                if database.add(password) and database.commit():
+                    return Response.success(message="Account created successfully.")
 
         return Response.error(message="Username unavailable.")
 

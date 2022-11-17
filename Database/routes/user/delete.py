@@ -18,8 +18,10 @@ def user_delete():
 
     if username := request.json.get("username", False):
         if user := database.query("User").filter_by(username=username):
-            if user.delete() and database.commit():
-                return Response.success(message="Account successfully deleted.")
+            if query_user := user.limit(1).first():
+                if password := database.query("Password").filter_by(user=query_user.id):
+                    if user.delete() and password.delete() and database.commit():
+                        return Response.success(message="Account successfully deleted.")
 
             return Response.error(message="Error during account deletion.")
 
