@@ -7,13 +7,12 @@ from models.torrent import Torrent
 from models.user import User
 from models.password import Password
 from utils.base import Base
-from utils.config import Config
+from utils.config import config
 from utils.singleton import Singleton
 
 
 class SQLAlchemy(metaclass=Singleton):
     def __init__(self) -> None:
-        self.__config: dict = Config()
 
         self.db: sqlalchemy.engine.base.Engine = self.__connect()
         self.Session: sqlalchemy.orm.session.Session = self.__session()
@@ -21,7 +20,7 @@ class SQLAlchemy(metaclass=Singleton):
         Base.metadata.create_all(self.db)
 
     def __connect(self) -> sqlalchemy.engine.base.Engine:
-        database_config = self.__config["database"]
+        database_config = config["database"]
 
         database_ip = database_config["database_ip"]
         database_port = str(database_config["database_port"])
