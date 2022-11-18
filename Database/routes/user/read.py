@@ -24,6 +24,7 @@ def user_read(user):
                 message={
                     "id": user.id,
                     "username": user.username,
+                    "api_key": user.api_key,
                     "uploaded": user.uploaded,
                     "downloaded": user.downloaded,
                 }
