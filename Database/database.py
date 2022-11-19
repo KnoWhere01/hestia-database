@@ -1,7 +1,7 @@
 from flask import Flask
 from gevent.pywsgi import WSGIServer
 
-from routes.routes import set_routes
+from utils.routes import set_routes
 from utils.sqlalchemy import SQLAlchemy
 
 
