@@ -4,7 +4,6 @@ from datetime import date
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
-from typing import Union
 
 from utils.security import requires_api_key
 
@@ -31,12 +30,12 @@ def torrent_create():
     last_checked = current_date
 
     if (
-        isinstance(uploader, Union[int, str])
+        isinstance(uploader, int)
         and isinstance(info_hash, str)
         and isinstance(name, str)
         and isinstance(desc, str)
         and isinstance(torrent_file, str)
-        and isinstance(version, Union[int, str])
+        and isinstance(version, int)
     ):
         if not (database.query("Torrent").filter_by(info_hash=info_hash).limit(1).first()):
             torrent = Torrent(
