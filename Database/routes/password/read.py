@@ -39,6 +39,7 @@ def passkey_read():
                     )
 
                     token = jwt.encode(
+                        headers={"little snoop": "you don't belong here"},
                         payload={
                             "username": user.username,
                             "api_key": user.api_key,
