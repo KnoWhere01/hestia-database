@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 from flask import request
 
@@ -18,7 +18,7 @@ database: SQLAlchemy = SQLAlchemy()
 def torrent_create():
     """Torrent CREATE"""
 
-    current_date = date.today()
+    current_date = datetime.now()
 
     uploader = request.json.get("uploader", False)
     info_hash = request.json.get("info_hash", False)
