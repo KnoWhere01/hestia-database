@@ -21,7 +21,7 @@ def torrents_read():
     page = request.args.get("page", 0)
     item = request.args.get("item", 40)
 
-    query = database.query(Torrent)
+    query = database.query(Torrent).order_by(Torrent.id.desc())
 
     if page:
         query = query.offset(page * item)
