@@ -5,6 +5,8 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from models.torrent import Torrent
+
 from utils.security import requires_api_key
 
 blueprint = Blueprint("torrent_create")
@@ -37,7 +39,7 @@ def torrent_create():
         and isinstance(torrent_file, str)
         and isinstance(version, int)
     ):
-        if not (database.query("Torrent").filter_by(info_hash=info_hash).limit(1).first()):
+        if not (database.query(Torrent).filter_by(info_hash=info_hash).limit(1).first()):
             torrent = Torrent(
                 uploader=uploader,
                 info_hash=info_hash,

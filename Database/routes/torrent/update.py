@@ -1,7 +1,8 @@
 from html import escape
 
 from flask import request
-from passlib.hash import bcrypt
+
+from models.torrent import Torrent
 
 from utils.blueprint import Blueprint
 from utils.response import Response
@@ -19,7 +20,7 @@ database: SQLAlchemy = SQLAlchemy()
 def torrent_update(info_hash):
     """Torrent UPDATE"""
     if info_hash := escape(info_hash):
-        if torrent := database.query("Torrent").filter_by(info_hash=info_hash):
+        if torrent := database.query(Torrent).filter_by(info_hash=info_hash):
             uploader = request.json.get("uploader", False)
             name = request.json.get("name", False)
             desc = request.json.get("desc", False)

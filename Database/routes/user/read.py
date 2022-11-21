@@ -4,6 +4,8 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from models.user import User
+
 from html import escape
 
 from utils.security import requires_api_key
@@ -19,7 +21,7 @@ def user_read(user):
     """User READ"""
 
     if username := escape(user):
-        if user := database.query("User").filter_by(username=username).limit(1).first():
+        if user := database.query(User).filter_by(username=username).limit(1).first():
             return Response.success(
                 message={
                     "id": user.id,

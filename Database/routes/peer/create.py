@@ -4,6 +4,8 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from models.peer import Peer
+
 from utils.security import requires_api_key
 
 blueprint = Blueprint("peer_create")
@@ -42,7 +44,7 @@ def peer_create():
         and no_peer_id
         and user_agent
     ):
-        if not (database.query("Peer").filter_by(peer_id=peer_id).limit(1).first()):
+        if not (database.query(Peer).filter_by(peer_id=peer_id).limit(1).first()):
             peer = Peer(
                 torrent=torrent,
                 peer_id=peer_id,

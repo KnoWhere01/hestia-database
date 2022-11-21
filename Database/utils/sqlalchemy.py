@@ -1,11 +1,5 @@
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
-
-from models.passkey import PassKey
-from models.peer import Peer
-from models.torrent import Torrent
-from models.user import User
-from models.password import Password
 from utils.base import Base
 from utils.config import config
 from utils.singleton import Singleton
@@ -53,4 +47,4 @@ class SQLAlchemy(metaclass=Singleton):
         return True
 
     def query(self, table):
-        return self.Session.query(globals()[table])
+        return self.Session.query(table)

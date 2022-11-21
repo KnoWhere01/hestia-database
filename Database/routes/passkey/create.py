@@ -6,6 +6,8 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from models.passkey import PassKey
+
 from utils.security import requires_api_key
 
 blueprint = Blueprint("passkey_create")
@@ -24,7 +26,7 @@ def passkey_create():
 
     if passkey_uuid and torrent and user:
         if not (
-            database.query("PassKey").filter_by(passkey=passkey_uuid).limit(1).first()
+            database.query(PassKey).filter_by(passkey=passkey_uuid).limit(1).first()
         ):
             passkey = PassKey(passkey=passkey_uuid, torrent=torrent, user=user)
 

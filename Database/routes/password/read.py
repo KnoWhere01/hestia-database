@@ -6,6 +6,9 @@ from utils.sqlalchemy import SQLAlchemy
 from utils.config import config
 import datetime, calendar
 
+from models.user import User
+from models.password import Password
+
 from passlib.hash import bcrypt
 import jwt
 
@@ -25,9 +28,9 @@ def passkey_read():
     password = request.json.get("password", False)
 
     if username and password:
-        if user := database.query("User").filter_by(username=username).limit(1).first():
+        if user := database.query(User).filter_by(username=username).limit(1).first():
             if (
-                auth := database.query("Password")
+                auth := database.query(Password)
                 .filter_by(user=user.id)
                 .limit(1)
                 .first()

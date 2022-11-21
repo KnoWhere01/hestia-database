@@ -5,8 +5,9 @@ from sqlalchemy.orm import relationship
 from models.user import User
 from utils.base import Base
 
+from sqlalchemy_serializer import SerializerMixin
 
-class Torrent(Base):
+class Torrent(Base, SerializerMixin):
     __tablename__ = "torrents"
     id = Column(Integer, primary_key=True)
     uploader = Column(Integer, ForeignKey("users.id"))

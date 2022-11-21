@@ -6,6 +6,8 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
+from models.peer import Peer
+
 from utils.security import requires_api_key
 
 blueprint = Blueprint("peer_update")
@@ -18,7 +20,7 @@ database: SQLAlchemy = SQLAlchemy()
 def peer_update(peer_id):
     """Peer UPDATE"""
     if peer_id := escape(peer_id):
-        if peer := database.query("Peer").filter_by(peer_id=peer_id):
+        if peer := database.query(Peer).filter_by(peer_id=peer_id):
             ip = request.json.get("ip", False)
             port = request.json.get("port", False)
             uploaded = request.json.get("uploaded", False)
