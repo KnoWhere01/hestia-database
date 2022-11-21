@@ -6,8 +6,6 @@ from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.sqlalchemy import SQLAlchemy
 
-from models.user import User
-
 import uuid
 
 from passlib.hash import bcrypt
@@ -36,13 +34,10 @@ def user_create():
                 uploaded=uploaded,
                 downloaded=downloaded,
             )
-            
+
             if database.add(user) and database.commit():
 
-                password = Password(
-                    user=user.id,
-                    password=bcrypt.hash(password)
-                )
+                password = Password(user=user.id, password=bcrypt.hash(password))
 
                 if database.add(password) and database.commit():
                     return Response.success(message="Account created successfully.")
