@@ -1,5 +1,6 @@
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
+
 from utils.base import Base
 from utils.config import config
 from utils.singleton import Singleton

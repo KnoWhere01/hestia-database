@@ -3,12 +3,10 @@ from html import escape
 from flask import request
 
 from models.torrent import Torrent
-
 from utils.blueprint import Blueprint
 from utils.response import Response
-from utils.sqlalchemy import SQLAlchemy
-
 from utils.security import requires_api_key
+from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("torrent_update")
 
@@ -31,7 +29,6 @@ def torrent_update(info_hash):
             seeders = request.json.get("seeders", False)
             leechers = request.json.get("leechers", False)
             last_checked = request.json.get("last_checked", False)
-            
 
             if uploader:
                 torrent.update({"uploader": uploader})

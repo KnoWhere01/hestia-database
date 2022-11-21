@@ -3,14 +3,12 @@ from html import escape
 from flask import request
 from passlib.hash import bcrypt
 
+from models.password import Password
+from models.user import User
 from utils.blueprint import Blueprint
 from utils.response import Response
-from utils.sqlalchemy import SQLAlchemy
-
-from models.user import User
-from models.password import Password
-
 from utils.security import requires_api_key
+from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("user_update")
 
@@ -33,7 +31,9 @@ def user_update(user):
 
             if password:
                 user_query = user.limit(1).first()
-                if password_query := database.query(Password).filter_by(user=user_query.id):
+                if password_query := database.query(Password).filter_by(
+                    user=user_query.id
+                ):
                     password_query.update({"password": bcrypt.hash(password)})
 
             if uploaded:

@@ -1,18 +1,17 @@
-from flask import request
-
-from utils.blueprint import Blueprint
-from utils.response import Response
-from utils.sqlalchemy import SQLAlchemy
-
-from models.torrent import Torrent
-
 from html import escape
 
+from flask import request
+
+from models.torrent import Torrent
+from utils.blueprint import Blueprint
+from utils.response import Response
 from utils.security import requires_api_key
+from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("torrent_read")
 
 database: SQLAlchemy = SQLAlchemy()
+
 
 @blueprint.route("/torrents", methods=["GET"])
 @requires_api_key
@@ -25,13 +24,13 @@ def torrents_read():
     query = database.query(Torrent)
 
     if page:
-        query = query.offset(page*item)
+        query = query.offset(page * item)
 
     query = query.limit(item)
 
     if torrents := query.all():
         data = [torrent.to_dict() for torrent in torrents]
-        return Response.success(message=data)        
+        return Response.success(message=data)
 
     return Response.error(message="Torrents unavailable.")
 
@@ -42,7 +41,12 @@ def torrent_read(info_hash):
     """Torrent READ"""
 
     if info_hash := escape(info_hash):
-        if torrent := database.query(Torrent).filter_by(info_hash=info_hash).limit(1).first():
+        if (
+            torrent := database.query(Torrent)
+            .filter_by(info_hash=info_hash)
+            .limit(1)
+            .first()
+        ):
             return Response.success(
                 message={
                     "uploader": torrent.uploader,

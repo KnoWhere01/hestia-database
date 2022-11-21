@@ -1,11 +1,11 @@
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT, TINYINT
 from sqlalchemy.orm import relationship
+from sqlalchemy_serializer import SerializerMixin
 
 from models.user import User
 from utils.base import Base
 
-from sqlalchemy_serializer import SerializerMixin
 
 class Torrent(Base, SerializerMixin):
     __tablename__ = "torrents"
@@ -25,19 +25,16 @@ class Torrent(Base, SerializerMixin):
     relationship(User, backref="torrents")
 
     def __repr__(self):
-        return (
-            "<Torrent(uploader='%s', info_hash='%s', name='%s', desc='%s', torrent_file='%s', version='%s', uploaded_time='%s', download_count='%s', seeders='%s', leechers='%s', last_checked='%s')>"
-            % (
-                self.uploader,
-                self.info_hash,
-                self.name,
-                self.desc,
-                self.torrent_file,
-                self.version,
-                self.uploaded_time,
-                self.download_count,
-                self.seeders,
-                self.leechers,
-                self.last_checked,
-            )
+        return "<Torrent(uploader='%s', info_hash='%s', name='%s', desc='%s', torrent_file='%s', version='%s', uploaded_time='%s', download_count='%s', seeders='%s', leechers='%s', last_checked='%s')>" % (
+            self.uploader,
+            self.info_hash,
+            self.name,
+            self.desc,
+            self.torrent_file,
+            self.version,
+            self.uploaded_time,
+            self.download_count,
+            self.seeders,
+            self.leechers,
+            self.last_checked,
         )

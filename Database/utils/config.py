@@ -6,4 +6,5 @@ class Config(metaclass=Singleton):
     def __new__(cls) -> dict:
         return yaml.read(".env")
 
+
 config = Config()

@@ -27,22 +27,19 @@ class Peer(Base):
     relationship(Torrent, backref="peers")
 
     def __repr__(self):
-        return (
-            "<Peer(torrent='%s', peer_id='%s', ip='%s', port='%s', uploaded='%s', downloaded='%s', left='%s', event='%s', tracker_id='%s', compact='%s', key='%s', corrupt='%s', no_peer_id='%s', user_agent='%s')>"
-            % (
-                self.torrent,
-                self.peer_id,
-                self.ip,
-                self.port,
-                self.uploaded,
-                self.downloaded,
-                self.left,
-                self.event,
-                self.tracker_id,
-                self.compact,
-                self.key,
-                self.corrupt,
-                self.no_peer_id,
-                self.user_agent,
-            )
+        return "<Peer(torrent='%s', peer_id='%s', ip='%s', port='%s', uploaded='%s', downloaded='%s', left='%s', event='%s', tracker_id='%s', compact='%s', key='%s', corrupt='%s', no_peer_id='%s', user_agent='%s')>" % (
+            self.torrent,
+            self.peer_id,
+            self.ip,
+            self.port,
+            self.uploaded,
+            self.downloaded,
+            self.left,
+            self.event,
+            self.tracker_id,
+            self.compact,
+            self.key,
+            self.corrupt,
+            self.no_peer_id,
+            self.user_agent,
         )

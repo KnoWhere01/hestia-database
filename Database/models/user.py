@@ -13,7 +13,9 @@ class User(Base):
     downloaded = Column(BIGINT(unsigned=True), default=0)
 
     def __repr__(self):
-        return (
-            "<User(username='%s', api_key='%s', uploaded='%s', downloaded='%s')>"
-            % (self.username, self.api_key, self.uploaded, self.downloaded)
+        return "<User(username='%s', api_key='%s', uploaded='%s', downloaded='%s')>" % (
+            self.username,
+            self.api_key,
+            self.uploaded,
+            self.downloaded,
         )

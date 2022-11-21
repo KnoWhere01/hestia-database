@@ -1,14 +1,12 @@
-from flask import request
-
-from utils.blueprint import Blueprint
-from utils.response import Response
-from utils.sqlalchemy import SQLAlchemy
-
-from models.passkey import PassKey
-
 from html import escape
 
+from flask import request
+
+from models.passkey import PassKey
+from utils.blueprint import Blueprint
+from utils.response import Response
 from utils.security import requires_api_key
+from utils.sqlalchemy import SQLAlchemy
 
 blueprint = Blueprint("passkey_read")
 
@@ -21,7 +19,12 @@ def passkey_read(passKey):
     """Passkey READ"""
 
     if passKey := escape(passKey):
-        if passKey := database.query(PassKey).filter_by(passkey=passKey).limit(1).first():
+        if (
+            passKey := database.query(PassKey)
+            .filter_by(passkey=passKey)
+            .limit(1)
+            .first()
+        ):
             return Response.success(
                 message={
                     "passkey": passKey.passkey,

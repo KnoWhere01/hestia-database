@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT
 
 from utils.base import Base
@@ -11,10 +11,7 @@ class Password(Base):
     password = Column(String(60), nullable=False)
 
     def __repr__(self):
-        return (
-            "<Password(user='%s', password='%s')>"
-            % (
-                self.user,
-                self.password,
-            )
+        return "<Password(user='%s', password='%s')>" % (
+            self.user,
+            self.password,
         )

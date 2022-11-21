@@ -1,5 +1,5 @@
 import importlib
-from os import scandir, path
+from os import path, scandir
 
 
 def set_routes(app):

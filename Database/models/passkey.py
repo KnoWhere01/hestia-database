@@ -11,11 +11,8 @@ class PassKey(Base):
     user = Column(Integer, ForeignKey("users.id"))
 
     def __repr__(self):
-        return (
-            "<PassKey(passkey='%s', torrent='%s', user='%s')>"
-            % (
-                self.passkey,
-                self.torrent,
-                self.user,
-            )
+        return "<PassKey(passkey='%s', torrent='%s', user='%s')>" % (
+            self.passkey,
+            self.torrent,
+            self.user,
         )
