@@ -20,13 +20,8 @@ def peer_create():
     peer_id = request.json.get("peer_id", False)
     ip = request.json.get("ip", False)
     port = request.json.get("port", False)
-    uploaded, downloaded, left = 0, 0, 0
-    event = request.json.get("event", False)
-    tracker_id = request.json.get("tracker_id", False)
-    compact = request.json.get("compact", False)
-    key = request.json.get("key", False)
-    corrupt = request.json.get("corrupt", False)
-    no_peer_id = request.json.get("no_peer_id", False)
+    uploaded, downloaded, uploaded_total, downloaded_total = 0, 0, 0, 0
+    seeding = request.json.get("tracker_id", False)
     user_agent = request.json.get("user_agent", False)
 
     if (
@@ -34,12 +29,7 @@ def peer_create():
         and peer_id
         and ip
         and port
-        and event
-        and tracker_id
-        and compact
-        and key
-        and corrupt
-        and no_peer_id
+        and seeding
         and user_agent
     ):
         if not (database.query(Peer).filter_by(peer_id=peer_id).limit(1).first()):
@@ -50,13 +40,8 @@ def peer_create():
                 port=port,
                 uploaded=uploaded,
                 downloaded=downloaded,
-                left=left,
-                event=event,
-                tracker_id=tracker_id,
-                compact=compact,
-                key=key,
-                corrupt=corrupt,
-                no_peer_id=no_peer_id,
+                uploaded_total=uploaded_total,
+                downloaded_total=downloaded_total,
                 user_agent=user_agent,
             )
 
