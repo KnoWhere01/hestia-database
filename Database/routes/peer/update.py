@@ -23,13 +23,9 @@ def peer_update(peer_id):
             port = request.json.get("port", False)
             uploaded = request.json.get("uploaded", False)
             downloaded = request.json.get("downloaded", False)
-            left = request.json.get("left", False)
-            event = request.json.get("event", False)
-            tracker_id = request.json.get("tracker_id", False)
-            compact = request.json.get("compact", False)
-            key = request.json.get("key", False)
-            corrupt = request.json.get("corrupt", False)
-            no_peer_id = request.json.get("no_peer_id", False)
+            uploaded_total = request.json.get("uploaded_total", False)
+            downloaded_total = request.json.get("downloaded_total", False)
+            seeding = request.json.get("seeding", False)
             user_agent = request.json.get("user_agent", False)
 
             if ip:
@@ -44,26 +40,14 @@ def peer_update(peer_id):
             if downloaded:
                 peer.update({"downloaded": downloaded})
 
-            if left:
-                peer.update({"left": left})
+            if uploaded_total:
+                peer.update({"uploaded_total": uploaded_total})
 
-            if event:
-                peer.update({"event": event})
+            if downloaded_total:
+                peer.update({"downloaded_total": downloaded_total})
 
-            if tracker_id:
-                peer.update({"tracker_id": tracker_id})
-
-            if compact:
-                peer.update({"compact": compact})
-
-            if key:
-                peer.update({"key": key})
-
-            if corrupt:
-                peer.update({"corrupt": corrupt})
-
-            if no_peer_id:
-                peer.update({"no_peer_id": no_peer_id})
+            if seeding:
+                peer.update({"seeding": seeding})
 
             if user_agent:
                 peer.update({"user_agent": user_agent})
@@ -79,13 +63,9 @@ def peer_update(peer_id):
                         "port": peer.port,
                         "uploaded": peer.uploaded,
                         "downloaded": peer.downloaded,
-                        "left": peer.left,
-                        "event": peer.event,
-                        "tracker_id": peer.tracker_id,
-                        "compact": peer.compact,
-                        "key": peer.key,
-                        "corrupt": peer.corrupt,
-                        "no_peer_id": peer.no_peer_id,
+                        "uploaded_total": peer.uploaded_total,
+                        "downloaded_total": peer.downloaded_total,
+                        "seeding": peer.seeding,
                         "user_agent": peer.user_agent,
                     }
                 )
