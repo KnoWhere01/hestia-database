@@ -70,22 +70,18 @@
 		<line x1="132" y1="34" x2="216" y2="34" stroke="#9970ab" stroke-width="1"/>
 	</g>
 	<text x="154" y="26.75" fill="#000" font-family="Verdana" font-size="12">PEERS</text>
-	<text x="137" y="51.8" fill="#000" font-family="Verdana" font-size="12">id</text>
-	<line x1="137" y1="54" x2="149" y2="54" stroke="#000" stroke-width="1"/>
-	<text x="137" y="68.8" fill="#000" font-family="Verdana" font-size="12">torrent</text>
-	<text x="137" y="85.8" fill="#000" font-family="Verdana" font-size="12">peer_id</text>
-	<text x="137" y="102.8" fill="#000" font-family="Verdana" font-size="12">ip</text>
-	<text x="137" y="119.8" fill="#000" font-family="Verdana" font-size="12">port</text>
-	<text x="137" y="136.8" fill="#000" font-family="Verdana" font-size="12">uploaded</text>
-	<text x="137" y="153.8" fill="#000" font-family="Verdana" font-size="12">downloaded</text>
-	<text x="137" y="170.8" fill="#000" font-family="Verdana" font-size="12">left</text>
-	<text x="137" y="187.8" fill="#000" font-family="Verdana" font-size="12">event</text>
-	<text x="137" y="204.8" fill="#000" font-family="Verdana" font-size="12">tracker_id</text>
-	<text x="137" y="221.8" fill="#000" font-family="Verdana" font-size="12">compact</text>
-	<text x="137" y="238.8" fill="#000" font-family="Verdana" font-size="12">key</text>
-	<text x="137" y="255.8" fill="#000" font-family="Verdana" font-size="12">corrupt</text>
-	<text x="137" y="272.8" fill="#000" font-family="Verdana" font-size="12">no_peer_id</text>
-	<text x="137" y="289.8" fill="#000" font-family="Verdana" font-size="12">user_agent</text>
+	<text x="120" y="51.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="120" y1="54" x2="132" y2="54" stroke="#000" stroke-width="1"/>
+	<text x="120" y="68.8" fill="#000" font-family="Verdana" font-size="12">torrent</text>
+	<text x="120" y="85.8" fill="#000" font-family="Verdana" font-size="12">peer_id</text>
+	<text x="120" y="102.8" fill="#000" font-family="Verdana" font-size="12">ip</text>
+	<text x="120" y="119.8" fill="#000" font-family="Verdana" font-size="12">port</text>
+	<text x="120" y="136.8" fill="#000" font-family="Verdana" font-size="12">uploaded</text>
+	<text x="120" y="153.8" fill="#000" font-family="Verdana" font-size="12">downloaded</text>
+	<text x="120" y="170.8" fill="#000" font-family="Verdana" font-size="12">uploaded_total</text>
+	<text x="120" y="187.8" fill="#000" font-family="Verdana" font-size="12">downloaded_total</text>
+	<text x="120" y="204.8" fill="#000" font-family="Verdana" font-size="12">seeding</text>
+	<text x="120" y="221.8" fill="#000" font-family="Verdana" font-size="12">user_agent</text>
 </g>
 
 <!-- Entity TORRENTS -->
