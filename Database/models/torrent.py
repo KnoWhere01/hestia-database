@@ -3,7 +3,7 @@ from sqlalchemy.dialects.mysql import BIGINT, TINYINT
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 
-from utils.models import User
+from models.user import User
 from utils.base import Base
 
 
