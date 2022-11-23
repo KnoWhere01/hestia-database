@@ -1,8 +1,8 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.dialects.mysql import BIGINT, TINYINT
+from sqlalchemy.dialects.mysql import BIGINT
 from sqlalchemy.orm import relationship
 
-from utils.models import Torrent
+from models.torrent import Torrent
 from utils.base import Base
 
 
