@@ -2,7 +2,7 @@ import uuid
 
 from flask import request
 
-from models.passkey import PassKey
+from utils.models import PassKey
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.security import requires_api_key

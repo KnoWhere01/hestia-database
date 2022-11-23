@@ -5,6 +5,7 @@ from utils.base import Base
 from utils.config import config
 from utils.singleton import Singleton
 
+from utils.models import PassKey, Password, Peer, Torrent, User
 
 class SQLAlchemy(metaclass=Singleton):
     def __init__(self) -> None:

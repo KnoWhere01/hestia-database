@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT, TINYINT
 from sqlalchemy.orm import relationship
 
-from models.torrent import Torrent
+from utils.models import Torrent
 from utils.base import Base
 
 

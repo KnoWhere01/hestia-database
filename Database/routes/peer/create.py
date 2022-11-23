@@ -1,6 +1,6 @@
 from flask import request
 
-from models.peer import Peer
+from utils.models import Peer
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.security import requires_api_key

@@ -3,8 +3,7 @@ import uuid
 from flask import request
 from passlib.hash import bcrypt
 
-from models.password import Password
-from models.user import User
+from utils.models import Password, User
 from utils.blueprint import Blueprint
 from utils.response import Response
 from utils.security import requires_api_key
