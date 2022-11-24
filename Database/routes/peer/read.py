@@ -41,3 +41,19 @@ def torrent_read(peer_id):
         return Response.error(message="Peer unavailable.")
 
     return Response.error(message="Peer unavailable.")
+
+
+@blueprint.route("/peers/<torrent_id>", methods=["GET"])
+@requires_api_key
+def torrent_read(torrent_id):
+    """Peers READ"""
+
+    if torrent_id := escape(torrent_id):
+        query = database.query(Peer).filter_by(torrent_id=torrent_id)
+        if peers := query.all():
+            data = [peer.to_dict() for peer in peers]
+            return Response.success(message=data)
+
+        return Response.error(message="Peers unavailable.")
+
+    return Response.error(message="Peers unavailable.")
