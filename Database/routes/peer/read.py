@@ -13,7 +13,7 @@ database: SQLAlchemy = SQLAlchemy()
 
 @blueprint.route("/peer/<peer_id>", methods=["GET"])
 @requires_api_key
-def torrent_read(peer_id):
+def peer_read(peer_id):
     """Peer READ"""
 
     if peer_id := escape(peer_id):
@@ -45,7 +45,7 @@ def torrent_read(peer_id):
 
 @blueprint.route("/peers/<torrent_id>", methods=["GET"])
 @requires_api_key
-def torrent_read(torrent_id):
+def peers_read(torrent_id):
     """Peers READ"""
 
     if torrent_id := escape(torrent_id):
