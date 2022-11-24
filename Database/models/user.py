@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT
+from sqlalchemy_serializer import SerializerMixin
 
 from utils.base import Base
 
 
-class User(Base):
+class User(Base, SerializerMixin):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     username = Column(String(255), unique=True, nullable=False)

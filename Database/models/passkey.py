@@ -1,9 +1,10 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy_serializer import SerializerMixin
 
 from utils.base import Base
 
 
-class PassKey(Base):
+class PassKey(Base, SerializerMixin):
     __tablename__ = "passkeys"
     id = Column(Integer, primary_key=True)
     passkey = Column(String(36), unique=True)

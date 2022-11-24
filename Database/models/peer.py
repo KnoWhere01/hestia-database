@@ -1,12 +1,13 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.dialects.mysql import BIGINT
 from sqlalchemy.orm import relationship
+from sqlalchemy_serializer import SerializerMixin
 
 from models.torrent import Torrent
 from utils.base import Base
 
 
-class Peer(Base):
+class Peer(Base, SerializerMixin):
     __tablename__ = "peers"
     id = Column(Integer, primary_key=True)
     torrent = Column(Integer, ForeignKey("torrents.id"))
