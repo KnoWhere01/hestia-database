@@ -20,7 +20,7 @@ def peer_create():
     peer_id = request.json.get("peer_id", False)
     ip = request.json.get("ip", False)
     port = request.json.get("port", False)
-    uploaded, downloaded, uploaded_total, downloaded_total = 0, 0, 0, 0
+    uploaded, downloaded, uploaded_total, downloaded_total, active = 0, 0, 0, 0, False
     seeding = request.json.get("tracker_id", False)
     user_agent = request.json.get("user_agent", False)
 
@@ -38,6 +38,7 @@ def peer_create():
                 peer_id=peer_id,
                 ip=ip,
                 port=port,
+                active=active,
                 uploaded=uploaded,
                 downloaded=downloaded,
                 uploaded_total=uploaded_total,

@@ -24,6 +24,7 @@ def torrent_read(peer_id):
                     "peer_id": peer_id,
                     "ip": peer.ip,
                     "port": peer.port,
+                    "active": peer.active,
                     "uploaded": peer.uploaded,
                     "downloaded": peer.downloaded,
                     "left": peer.left,

@@ -13,6 +13,7 @@ class Peer(Base):
     peer_id = Column(String(40))
     ip = Column(String(45))
     port = Column(Integer)
+    active = Column(Boolean, default=False)
     uploaded = Column(BIGINT(unsigned=True), default=0)
     downloaded = Column(BIGINT(unsigned=True), default=0)
     uploaded_total = Column(BIGINT(unsigned=True), default=0)
@@ -23,11 +24,12 @@ class Peer(Base):
     relationship(Torrent, backref="peers")
 
     def __repr__(self):
-        return "<Peer(torrent='%s', peer_id='%s', ip='%s', port='%s', uploaded='%s', downloaded='%s', uploaded_total='%s', downloaded_total='%s', seeding='%s', user_agent='%s')>" % (
+        return "<Peer(torrent='%s', peer_id='%s', ip='%s', port='%s', active='%s', uploaded='%s', downloaded='%s', uploaded_total='%s', downloaded_total='%s', seeding='%s', user_agent='%s')>" % (
             self.torrent,
             self.peer_id,
             self.ip,
             self.port,
+            self.active,
             self.uploaded,
             self.downloaded,
             self.uploaded_total,

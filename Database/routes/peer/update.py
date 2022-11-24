@@ -21,6 +21,7 @@ def peer_update(peer_id):
         if peer := database.query(Peer).filter_by(peer_id=peer_id):
             ip = request.json.get("ip", False)
             port = request.json.get("port", False)
+            active = request.json.get("active", False)
             uploaded = request.json.get("uploaded", False)
             downloaded = request.json.get("downloaded", False)
             uploaded_total = request.json.get("uploaded_total", False)
@@ -33,6 +34,9 @@ def peer_update(peer_id):
 
             if port:
                 peer.update({"port": port})
+
+            if active:
+                peer.update({"active": active})
 
             if uploaded:
                 peer.update({"uploaded": uploaded})
@@ -61,6 +65,7 @@ def peer_update(peer_id):
                         "peer_id": peer_id,
                         "ip": peer.ip,
                         "port": peer.port,
+                        "active": peer.active,
                         "uploaded": peer.uploaded,
                         "downloaded": peer.downloaded,
                         "uploaded_total": peer.uploaded_total,
