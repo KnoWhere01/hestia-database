@@ -3,7 +3,6 @@ from sqlalchemy.dialects.mysql import BIGINT
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 
-from models.torrent import Torrent
 from utils.base import Base
 
 
@@ -23,6 +22,9 @@ class Peer(Base, SerializerMixin):
     user_agent = Column(String(1000))
 
     relationship(Torrent, backref="peers")
+    
+    def __init__(self):
+        from models.torrent import Torrent
 
     def __repr__(self):
         return "<Peer(torrent='%s', peer_id='%s', ip='%s', port='%s', active='%s', uploaded='%s', downloaded='%s', uploaded_total='%s', downloaded_total='%s', seeding='%s', user_agent='%s')>" % (
